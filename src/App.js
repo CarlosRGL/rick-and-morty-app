@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import LazyLoad from 'react-lazyload';
 import axios from 'axios';
-import Placeholder from './components/Placeholder';
 import logo from './images/logo.png';
 import './scss/App.scss';
+import Character from './components/Character';
 
 const QUERY_CHARACTER = 'https://rickandmortyapi.com/api/character/';
 
@@ -126,29 +125,7 @@ class App extends Component {
 
         <section className="content">
           {items.map(item => (
-            <LazyLoad
-              height={300}
-              key={item.id}
-              offset={[-200, 0]}
-              placeholder={<Placeholder />}
-            >
-              <div className="character">
-                <div
-                  className="character__image"
-                  style={{ backgroundImage: `url(${item.image})` }}
-                  alt={item.name}
-                />
-                <h2 className="character__name">{item.name}</h2>
-                <span>
-                  <strong>Status : </strong>
-                  {item.status}
-                </span>
-                <span>
-                  <strong>Species : </strong>
-                  {item.species}
-                </span>
-              </div>
-            </LazyLoad>
+            <Character item={item} />
           ))}
         </section>
         <button onClick={this.handleLoad}>Load more</button>
